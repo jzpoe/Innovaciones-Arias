@@ -29,11 +29,13 @@ function DataFetcher({novedades, setNovedades}) {
       const response = await axios.delete(`https://innovacion-backend.vercel.app/novedades/${id}`)
 
       if (response.status === 200) {
+        
          setNovedades(novedades.filter((novedad)=> novedad._id !==id ))
          alert("novedad eliminada correctamente")
         
-      }
+      }else{
       alert("Error al eliminar");
+    }
   } catch (error) {
     console.error("Error al eliminar la novedad:", error);
       alert("Error al eliminar el elemento");

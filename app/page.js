@@ -1,5 +1,4 @@
 "use client";
-import filtradoFechas from "@/app/filtradoFechas/page";
 import { useState } from "react";
 import DataFetcher from "./fecthNovedades/page";
 import axios from "axios";
@@ -29,6 +28,7 @@ function About() {
 
   const limpiarFormulario = () => {
     setNovedadesUpdate({
+      nombre:"",
       compras: "",
       provedores: "",
       empleado: "",
@@ -65,6 +65,14 @@ function About() {
             Formulario Financiero
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <input
+              label="nombre"
+              name="nombre"
+              type="text"
+              value={novedadesUpdate.nombre}
+              onChange={handleChange}
+              placeholder="Ingrese el nombre"
+            />
             <input
               label="Compras"
               name="compras"

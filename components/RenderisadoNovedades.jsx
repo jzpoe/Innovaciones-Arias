@@ -39,7 +39,7 @@ function RenderisadoNovedades ({novedades, loading, onDelete}) {
             <p><strong>Fecha: </strong>{formatoFecha(novedades.fecha)}</p>
             <button 
             class="bg-red-500 text-white px-4 py-2 mt-2 rounded"
-            onClick={()=>(novedades._id)} >borrar
+            onClick={()=>onDelete(novedades._id)} >borrar
             </button>
           </li>
         ))
