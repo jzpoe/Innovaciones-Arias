@@ -6,6 +6,7 @@ import axios from "axios";
 function About() {
  
   const [novedadesUpdate, setNovedadesUpdate] = useState({
+    nombre:"",
     compras: "",
     provedores: "",
     empleado: "",
