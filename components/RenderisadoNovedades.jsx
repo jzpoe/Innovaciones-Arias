@@ -29,6 +29,7 @@ function RenderisadoNovedades ({novedades, loading, onDelete}) {
     {novedades.length > 0 ? (
         novedades.map((novedades, index) => (
           <li key={index} class="bg-white rounded-lg shadow-md p-4 list-none">
+             <p><strong>Nombre:</strong> {novedades.nombre}</p>
             <p><strong>Compras:</strong> {novedades.compras}</p>
             <p><strong>Proveedores:</strong> {novedades.provedores}</p>
             <p><strong>Empleado:</strong> {novedades.empleado}</p>

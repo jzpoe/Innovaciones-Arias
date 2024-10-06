@@ -45,7 +45,7 @@ function About() {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "http://localhost:3001/novedades",
+        "https://innovacion-backend.vercel.app/novedades",
         novedadesUpdate
       );
       setNovedades((prevNovedades) => [...prevNovedades, response.data]);
@@ -67,7 +67,7 @@ function About() {
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <input
-              label="nombre"
+              label="Nombre"
               name="nombre"
               type="text"
               value={novedadesUpdate.nombre}
