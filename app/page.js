@@ -2,6 +2,7 @@
 import { useState } from "react";
 import DataFetcher from "./fecthNovedades/page";
 import axios from "axios";
+import Swal from "sweetalert2";
 
 function About() {
  
@@ -49,6 +50,11 @@ function About() {
         novedadesUpdate
       );
       setNovedades((prevNovedades) => [...prevNovedades, response.data]);
+      Swal.fire({
+        icon: "success",
+        title: "Éxito",
+        text: "Los datos se han enviado correctamente.",
+      });
       limpiarFormulario();
     } catch (error) {
       console.error("Error al enviar datos del formulario", error);

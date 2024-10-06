@@ -2,6 +2,7 @@
 import RenderisadoNovedades from "@/components/RenderisadoNovedades";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import Swal from "sweetalert2";
 
 function DataFetcher({novedades, setNovedades}) {
   
@@ -24,24 +25,39 @@ function DataFetcher({novedades, setNovedades}) {
   }, []);
 
  
-    const handleDelete = async(id)=>{
-      try {
-      const response = await axios.delete(`https://innovacion-backend.vercel.app/novedades/${id}`)
-
-      if (response.status === 200) {
-        
-         setNovedades(novedades.filter((novedad)=> novedad._id !==id ))
-         alert("novedad eliminada correctamente")
-        
-      }else{
-      alert("Error al eliminar");
-    }
-  } catch (error) {
-    console.error("Error al eliminar la novedad:", error);
-      alert("Error al eliminar el elemento");
-
-  }
+  const handleDelete = async (id) => {
+    // Muestra la alerta de confirmación
+    const result = await Swal.fire({
+      icon: "warning",
+      title: "¿Está seguro?",
+      text: "¿Desea borrar la tarea?",
+      showCancelButton: true, // Muestra el botón de cancelar
+      confirmButtonText: "Sí, borrar", // Texto del botón de confirmación
+      cancelButtonText: "No, cancelar", // Texto del botón de cancelación
+    });
   
+    // Si el usuario confirma la eliminación
+    if (result.isConfirmed) {
+      try {
+        const response = await axios.delete(`https://innovacion-backend.vercel.app/novedades/${id}`);
+  
+        if (response.status === 200) {
+          setNovedades(novedades.filter((novedad) => novedad._id !== id));
+          Swal.fire({
+            icon: "success",
+            title: "Eliminado",
+            text: "La tarea ha sido eliminada exitosamente.",
+          });
+        } else {
+          alert("Error al eliminar");
+        }
+      } catch (error) {
+        console.error("Error al eliminar la novedad:", error);
+        alert("Error al eliminar el elemento");
+      }
+    
+    
+  };
 
   }
 

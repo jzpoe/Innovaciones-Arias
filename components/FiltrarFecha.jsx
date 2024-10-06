@@ -11,6 +11,7 @@ function FiltrarFecha({ novedad }) {
   return (
     <div className="">
     <li className="bg-white rounded-lg shadow-md p-4  list-none">
+    <p><strong>Nombre:</strong> {novedad.nombre || "No disponible"}</p>
       <p><strong>Compras:</strong> {novedad.compras || "No disponible"}</p>
       <p><strong>Proveedores:</strong> {novedad.proveedores || "No disponible"}</p>
       <p><strong>Empleado:</strong> {novedad.empleado || "No disponible"}</p>
