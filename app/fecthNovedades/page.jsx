@@ -1,5 +1,6 @@
 "use client"
 import RenderisadoNovedades from "@/components/RenderisadoNovedades";
+import axios from "axios";
 import { useEffect, useState } from "react";
 
 function DataFetcher({novedades, setNovedades}) {
@@ -22,11 +23,29 @@ function DataFetcher({novedades, setNovedades}) {
     fetchData();
   }, []);
 
+ 
+    const handleDelete = async(id)=>{
+      try {
+      const response = await axios.delete(`https://innovacion-backend.vercel.app/novedades/${id}`)
+
+      if (response.status === 200) {
+         setNovedades(novedades.filter((novedad)=> novedad._id !==id ))
+         alert("novedad eliminada correctamente")
+        
+      }
+      alert("Error al eliminar");
+  } catch (error) {
+    console.error("Error al eliminar la novedad:", error);
+      alert("Error al eliminar el elemento");
+
+  }
   
+
+  }
 
   return (
    <>
-   <RenderisadoNovedades novedades={novedades} loading={loading}  />
+   <RenderisadoNovedades novedades={novedades} loading={loading} onDelete={handleDelete} />
    </>
   );
 }

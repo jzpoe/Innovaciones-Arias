@@ -1,5 +1,5 @@
 
-function RenderisadoNovedades ({novedades, loading}) {
+function RenderisadoNovedades ({novedades, loading, onDelete}) {
   if (loading) {
     return (
       <div className="flex items-center justify-center h-screen">
@@ -37,8 +37,13 @@ function RenderisadoNovedades ({novedades, loading}) {
             <p><strong>Transporte:</strong> {novedades.transporte}</p>
             <p><strong>Ganancia:</strong> {novedades.ganancia}</p>
             <p><strong>Fecha: </strong>{formatoFecha(novedades.fecha)}</p>
+            <button 
+            class="bg-red-500 text-white px-4 py-2 mt-2 rounded"
+            onClick={()=>(novedades._id)} >borrar
+            </button>
           </li>
         ))
+        
       ) : (
         <p>No se encontraron datos o aún se están cargando...</p>
       )}
